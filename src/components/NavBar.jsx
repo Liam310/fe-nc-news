@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
 import { Link } from '@reach/router';
+import { capitaliseFirstLetter } from '../utils/utils';
 
 class NavBar extends Component {
   state = {
@@ -14,7 +15,7 @@ class NavBar extends Component {
         {topics.map(({ slug }) => {
           return (
             <Link to={`/articles/topic/${slug}`} key={slug}>
-              {slug}
+              {capitaliseFirstLetter(slug)}
             </Link>
           );
         })}

@@ -8,12 +8,12 @@ export const fetchAllTopics = async () => {
 };
 
 export const fetchArticles = async slug => {
-  // console.log(slug);
   const { data } = await axios.get(
     'https://liam-news-api.herokuapp.com/api/articles/',
     {
       params: { topic: slug }
     }
   );
+  // YEET
   return data.articles;
 };

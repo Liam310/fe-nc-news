@@ -46,6 +46,8 @@
   border: solid 2px goldenrod;
   overflow-y: scroll;
   height: 100%;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .Footer {

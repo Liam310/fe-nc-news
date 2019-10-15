@@ -1,13 +1,24 @@
 import React from 'react';
+import { capitaliseFirstLetter, formatDate } from '../utils/utils';
 
-const ArticleListCard = ({ title, author, topic, votes, comment_count }) => {
+const ArticleListCard = ({
+  title,
+  author,
+  topic,
+  votes,
+  comment_count,
+  created_at
+}) => {
+  console.log(formatDate(created_at));
   return (
     <div>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
+      <p>{created_at}</p>
       <h4>Written by: {author}</h4>
-      <p>Topic: {topic}</p>
-      <p>Votes: {votes}</p>
-      <p>Number of comments: {comment_count}</p>
+      <p>Topic: {capitaliseFirstLetter(topic)}</p>
+      <p>
+        Votes: {votes}, Comments: {comment_count}
+      </p>
     </div>
   );
 };
