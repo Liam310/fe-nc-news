@@ -12,6 +12,7 @@ class NavBar extends Component {
 
     return (
       <div className="NavBar">
+        <Link to="/">All articles</Link>
         {topics.map(({ slug }) => {
           return (
             <Link to={`/articles/topic/${slug}`} key={slug}>

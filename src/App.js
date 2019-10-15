@@ -5,6 +5,8 @@ import NavBar from './components/NavBar';
 import ArticleList from './components/ArticleList';
 import Footer from './components/Footer';
 import { Router } from '@reach/router';
+import Article from './components/Article';
+import ErrorHandler from './components/ErrorHandler';
 
 class App extends React.Component {
   render() {
@@ -12,10 +14,14 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <NavBar />
-        <Router>
-          <ArticleList path="/" />
-          <ArticleList path="/articles/topic/:slug" />
-        </Router>
+        <main className="main">
+          <Router primary={false}>
+            <ArticleList path="/" />
+            <ArticleList path="/articles/topic/:slug" />
+            <Article path="/articles/:article_id" />
+            <ErrorHandler default />
+          </Router>
+        </main>
         <Footer />
       </div>
     );

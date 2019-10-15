@@ -8,8 +8,7 @@ export const formatDate = date => {
   const options = {
     day: 'numeric',
     month: 'long',
-    year: 'numeric',
-    timeZoneName: 'long'
+    year: 'numeric'
   };
   const formattedDate = new Date(date);
   return formattedDate.toLocaleDateString('en-GB', options);

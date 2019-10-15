@@ -7,13 +7,26 @@ export const fetchAllTopics = async () => {
   return data.topics;
 };
 
-export const fetchArticles = async slug => {
+export const fetchArticles = async (topic, sort_by) => {
   const { data } = await axios.get(
     'https://liam-news-api.herokuapp.com/api/articles/',
     {
-      params: { topic: slug }
+      params: { topic, sort_by }
     }
   );
-  // YEET
   return data.articles;
+};
+
+export const fetchArticleById = async article_id => {
+  const { data } = await axios.get(
+    `https://liam-news-api.herokuapp.com/api/articles/${article_id}`
+  );
+  return data.article;
+};
+
+export const fetchCommentsById = async article_id => {
+  const { data } = await axios.get(
+    `https://liam-news-api.herokuapp.com/api/articles/${article_id}/comments`
+  );
+  return data.comments;
 };

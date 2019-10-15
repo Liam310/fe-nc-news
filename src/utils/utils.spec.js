@@ -29,7 +29,4 @@ describe('formatDate', () => {
   it('formats a passed date to include the day and month', () => {
     expect(formatDate('2018-05-30T15:59:13.341Z')).toMatch(/May 30/);
   });
-  it('formats a passed date to include the time zone', () => {
-    expect(formatDate('2018-05-30T15:59:13.341Z')).toMatch(/British Summer Time/);
-  });
 });
