@@ -30,7 +30,7 @@ class Article extends Component {
             </p>
             <p>Votes: {votes}</p>
             <p>{body}</p>
-            <CommentList article_id={article_id} />
+            <CommentList article_id={article_id} user={this.props.user} />
           </div>
         ) : (
           <div>Loading...</div>
@@ -48,7 +48,7 @@ class Article extends Component {
       const { article_id } = this.props;
       const article = await api.fetchArticleById(article_id);
       this.setState({ article, isLoaded: true });
-    } catch ({ response: { data } }) {
+    } catch (err) {
       navigate('/err', {
         state: {
           msg: 'Whoops! There seems to be no such article by that number.',
