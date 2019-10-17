@@ -6,19 +6,21 @@ import CommentAdder from './CommentAdder';
 class CommentList extends Component {
   state = {
     comments: [],
-    commentFailed: false
+    commentFailed: false,
+    deleteFailed: false
   };
   render() {
-    const { comments } = this.state;
+    const { comments, commentFailed, deleteFailed } = this.state;
     const { user } = this.props;
     return (
       <div>
         <h3>Comments!</h3>
         <CommentAdder addComment={this.addComment} />
-        {this.state.commentFailed && (
-          <p className="CommentFailedPosting">
+        {commentFailed && (
+          <p className="FailedRequest">
             It seems like we weren't able to post your comment for some reason.
-            Please refresh the page and try again.
+            Please make sure you are logged in as one of the available users, then
+            refresh the page and try again.
           </p>
         )}
         <br />
@@ -32,6 +34,12 @@ class CommentList extends Component {
             />
           );
         })}
+        {deleteFailed && (
+          <p>
+            Oh dear! It seems we weren't able to delete that comment. Please
+            refresh the page and try again.
+          </p>
+        )}
       </div>
     );
   }
@@ -51,17 +59,23 @@ class CommentList extends Component {
     try {
       const newComment = await api.postComment(article_id, user, commentBody);
       this.setState(currentState => {
-        return { comments: [newComment, ...currentState.comments] };
+        return {
+          comments: [newComment, ...currentState.comments],
+          commentFailed: false
+        };
       });
     } catch (err) {
       this.setState({ commentFailed: true });
     }
   };
 
-  removeComment = comment_id => {
-    api.deleteComment(comment_id).then(() => {
+  removeComment = async comment_id => {
+    try {
+      await api.deleteComment(comment_id);
       this.getComments();
-    });
+    } catch (err) {
+      this.setState({ deleteFailed: true });
+    }
   };
 }
 

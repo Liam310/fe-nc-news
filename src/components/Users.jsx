@@ -3,7 +3,8 @@ import * as api from '../utils/api';
 
 class Users extends Component {
   state = {
-    users: []
+    users: [],
+    userRequestFailed: false
   };
   render() {
     return (
@@ -11,15 +12,26 @@ class Users extends Component {
         <h3>
           Currently signed in as <em>{this.props.user}</em>
         </h3>
-        <select onChange={this.handleChange}>
-          {this.state.users.map(({ username }) => {
-            return (
-              <option value={username} key={username}>
-                {username}
-              </option>
-            );
-          })}
-        </select>
+        {this.state.userRequestFailed ? (
+          <div>
+            <p>
+              Whoops! We couldn't get hold of the list of users for some reason.
+              Try refreshing the page.
+            </p>
+          </div>
+        ) : (
+          <div>
+            <select onChange={this.handleChange}>
+              {this.state.users.map(({ username }) => {
+                return (
+                  <option value={username} key={username}>
+                    {username}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        )}
       </div>
     );
   }
@@ -33,8 +45,12 @@ class Users extends Component {
   };
 
   getUsers = async () => {
-    const users = await api.fetchUsers();
-    this.setState({ users });
+    try {
+      const users = await api.fetchUsers();
+      this.setState({ users });
+    } catch (err) {
+      this.setState({ userRequestFailed: true });
+    }
   };
 }
 

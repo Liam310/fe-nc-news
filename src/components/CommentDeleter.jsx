@@ -1,14 +1,26 @@
 import React from 'react';
 
-const CommentDeleter = ({ comment_id, removeComment }) => {
-  const handleClick = () => {
+class CommentDeleter extends React.Component {
+  // { comment_id, removeComment }
+  state = {
+    deleteDisabled: false
+  };
+  render() {
+    return (
+      <button
+        onClick={this.handleClick}
+        className="DeleteButton"
+        disabled={this.state.deleteDisabled}
+      >
+        DELETE COMMENT
+      </button>
+    );
+  }
+  handleClick = () => {
+    const { comment_id, removeComment } = this.props;
+    this.setState({ deleteDisabled: true });
     removeComment(comment_id);
   };
-  return (
-    <button onClick={handleClick} className="DeleteButton">
-      DELETE COMMENT
-    </button>
-  );
-};
+}
 
 export default CommentDeleter;

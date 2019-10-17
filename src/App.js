@@ -11,7 +11,7 @@ import NavMenu from './components/NavMenu';
 
 class App extends React.Component {
   state = {
-    user: 'jessjelly'
+    user: localStorage.getItem('user') || 'guest'
   };
   render() {
     return (
@@ -34,6 +34,7 @@ class App extends React.Component {
 
   changeUser = user => {
     this.setState({ user });
+    localStorage.setItem('user', user);
   };
 }
 

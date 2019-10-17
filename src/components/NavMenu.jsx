@@ -7,11 +7,11 @@ import { capitaliseFirstLetter } from '../utils/utils';
 class NavMenu extends Component {
   state = {
     topics: [],
-    isOpen: false
+    isOpen: false,
+    topicRequestFailed: false
   };
   render() {
     const { topics, isOpen } = this.state;
-
     return (
       <Menu className="NavMenu" isOpen={isOpen} onStateChange={this.isMenuOpen}>
         <h3>Select a topic</h3>
@@ -29,6 +29,21 @@ class NavMenu extends Component {
             </Link>
           );
         })}
+        {this.state.topicRequestFailed && (
+          <div>
+            <br />
+            <img
+              className="sad-cat"
+              src="https://s.yimg.com/ny/api/res/1.2/8if8GGR3yl3IBEyG.mJYoA--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAw/http://media.zenfs.com/en-US/homerun/people_218/ddeaf5d430f4cc7b679ea3c9c0be05df"
+              alt="sad cat"
+            />
+            <p>
+              This cat is very sad because something went wrong with the
+              connection and we couldn't get hold of the list of topics. Please
+              wait a few seconds and then refresh the page.
+            </p>
+          </div>
+        )}
       </Menu>
     );
   }
@@ -38,8 +53,12 @@ class NavMenu extends Component {
   }
 
   getTopics = async () => {
-    const topics = await api.fetchAllTopics();
-    this.setState({ topics });
+    try {
+      const topics = await api.fetchAllTopics();
+      this.setState({ topics });
+    } catch (err) {
+      this.setState({ topicRequestFailed: true });
+    }
   };
 
   isMenuOpen = state => {

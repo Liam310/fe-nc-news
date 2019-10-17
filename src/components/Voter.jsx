@@ -3,10 +3,11 @@ import * as api from '../utils/api';
 
 class Voter extends Component {
   state = {
-    optimisticVotes: 0
+    optimisticVotes: 0,
+    voteFailed: false
   };
   render() {
-    const { optimisticVotes } = this.state;
+    const { optimisticVotes, voteFailed } = this.state;
     return (
       <form>
         <p>Votes: {optimisticVotes + this.props.votes}</p>
@@ -24,22 +25,28 @@ class Voter extends Component {
         >
           Downvote
         </button>
+        {voteFailed && (
+          <p className="FailedRequest">
+            Uh-oh! Your vote doesn't seem to be getting through to us. Please
+            refresh the page and try again.
+          </p>
+        )}
       </form>
     );
   }
 
-  incrementVotes = event => {
+  incrementVotes = async event => {
     event.preventDefault();
     const { name } = event.target;
     const { id, type } = this.props;
     try {
-      api.patchVotes(type, id, name);
+      await api.patchVotes(type, id, name);
+      this.setState(currentState => {
+        return { optimisticVotes: currentState.optimisticVotes + +name };
+      });
     } catch (err) {
-      console.log(err);
+      this.setState({ voteFailed: true });
     }
-    this.setState(currentState => {
-      return { optimisticVotes: currentState.optimisticVotes + +name };
-    });
   };
 }
 

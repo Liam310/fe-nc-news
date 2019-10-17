@@ -129,7 +129,7 @@
   padding: 10px;
 }
 
-.CommentFailedPosting {
+.FailedRequest {
   color: red;
 }
 
@@ -142,6 +142,10 @@
 
 img {
   max-width: 100vw;
+}
+
+img.sad-cat {
+  max-width: 90%;
 }
 
 .ErrorHandler {
