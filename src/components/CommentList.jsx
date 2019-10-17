@@ -5,7 +5,8 @@ import CommentAdder from './CommentAdder';
 
 class CommentList extends Component {
   state = {
-    comments: []
+    comments: [],
+    commentFailed: false
   };
   render() {
     const { comments } = this.state;
@@ -14,6 +15,13 @@ class CommentList extends Component {
       <div>
         <h3>Comments!</h3>
         <CommentAdder addComment={this.addComment} />
+        {this.state.commentFailed && (
+          <p className="CommentFailedPosting">
+            It seems like we weren't able to post your comment for some reason.
+            Please refresh the page and try again.
+          </p>
+        )}
+        <br />
         {comments.map(comment => {
           return (
             <CommentCard
@@ -38,13 +46,16 @@ class CommentList extends Component {
     this.setState({ comments });
   };
 
-  addComment = commentBody => {
+  addComment = async commentBody => {
     const { user, article_id } = this.props;
-    api.postComment(article_id, user, commentBody).then(newComment => {
+    try {
+      const newComment = await api.postComment(article_id, user, commentBody);
       this.setState(currentState => {
         return { comments: [newComment, ...currentState.comments] };
       });
-    });
+    } catch (err) {
+      this.setState({ commentFailed: true });
+    }
   };
 
   removeComment = comment_id => {

@@ -12,21 +12,18 @@ const ArticleListCard = ({
   article_id
 }) => {
   return (
-    <div>
+    <div className="ArticleListCard">
       <Link to={`/articles/${article_id}`}>
-        <h2>{title}</h2>
+        <div>
+          <h2>{title}</h2>
+          <p>{formatDate(created_at)}</p>
+          <h4>Written by: {author}</h4>
+          <p>Topic: {capitaliseFirstLetter(topic)}</p>
+          <p>
+            Votes: {votes}, Comments: {comment_count}
+          </p>
+        </div>
       </Link>
-      <p>{formatDate(created_at)}</p>
-      <h4>Written by: {author}</h4>
-      <p>
-        Topic:{' '}
-        <Link to={`/articles/topic/${topic}`}>
-          {capitaliseFirstLetter(topic)}
-        </Link>
-      </p>
-      <p>
-        Votes: {votes}, Comments: {comment_count}
-      </p>
     </div>
   );
 };

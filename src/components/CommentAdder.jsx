@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 
 class CommentAdder extends Component {
   state = {
-    commentBody: ''
+    commentBody: '',
+    commentFailed: false
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
+      <form onSubmit={this.handleSubmit} className="CommentAdder">
+        <textarea
+          className="CommentInput"
           type="text"
           onChange={this.handleChange}
           value={this.state.commentBody}
           required
-        />
+        />{' '}
+        <br />
         <button>Add comment</button>
       </form>
     );

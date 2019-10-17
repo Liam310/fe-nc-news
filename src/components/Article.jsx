@@ -4,6 +4,7 @@ import { capitaliseFirstLetter, formatDate } from '../utils/utils';
 import CommentList from './CommentList';
 import { Link } from '@reach/router';
 import { navigate } from '@reach/router';
+import Voter from './Voter';
 
 class Article extends Component {
   state = {
@@ -16,7 +17,7 @@ class Article extends Component {
       isLoaded
     } = this.state;
     return (
-      <>
+      <div className="Article">
         {isLoaded ? (
           <div>
             <h2>{title}</h2>
@@ -30,12 +31,13 @@ class Article extends Component {
             </p>
             <p>Votes: {votes}</p>
             <p>{body}</p>
+            <Voter votes={votes} type="articles" id={article_id} />
             <CommentList article_id={article_id} user={this.props.user} />
           </div>
         ) : (
           <div>Loading...</div>
         )}
-      </>
+      </div>
     );
   }
 
@@ -51,7 +53,8 @@ class Article extends Component {
     } catch (err) {
       navigate('/err', {
         state: {
-          msg: 'Whoops! There seems to be no such article by that number.',
+          msg:
+            "Whoops! Something went wrong. Are you sure there's an article with that number?",
           imgURL: 'https://http.cat/404',
           replace: true
         }

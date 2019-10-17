@@ -13,12 +13,17 @@ class ArticleList extends Component {
     const { articles, sort_by } = this.state;
     return (
       <div className="ArticleList">
-        {this.props.slug ? (
-          <h1>Articles on {this.props.slug}</h1>
-        ) : (
-          <h1>All articles</h1>
-        )}
-        <SortSelector sort_by={sort_by} setSortCriteria={this.setSortCriteria} />
+        <div className="ArticleHeader">
+          {this.props.slug ? (
+            <h1>Articles on {this.props.slug}</h1>
+          ) : (
+            <h1>All articles</h1>
+          )}
+          <SortSelector
+            sort_by={sort_by}
+            setSortCriteria={this.setSortCriteria}
+          />
+        </div>
         {articles.map(article => {
           return <ArticleListCard {...article} key={article.article_id} />;
         })}
@@ -40,8 +45,15 @@ class ArticleList extends Component {
       const { sort_by } = this.state;
       const articles = await api.fetchArticles(slug, sort_by);
       this.setState({ articles });
-    } catch ({ response: { data } }) {
-      navigate('/err', { state: { msg: data.msg, replace: true } });
+    } catch (err) {
+      navigate('/err', {
+        state: {
+          msg:
+            'Whoops! Something went wrong with the connection on our end. Wait a few seconds and try refreshing the page.',
+          imgURL: 'https://http.cat/500',
+          replace: true
+        }
+      });
     }
   };
 

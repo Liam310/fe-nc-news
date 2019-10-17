@@ -29,8 +29,12 @@ class NavBar extends Component {
   }
 
   getTopics = async () => {
-    const topics = await api.fetchAllTopics();
-    this.setState({ topics });
+    try {
+      const topics = await api.fetchAllTopics();
+      this.setState({ topics });
+    } catch (err) {
+      // HAndle ERROR
+    }
   };
 }
 
