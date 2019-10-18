@@ -40,12 +40,18 @@ class Voter extends Component {
     const { name } = event.target;
     const { id, type } = this.props;
     try {
-      await api.patchVotes(type, id, name);
       this.setState(currentState => {
         return { optimisticVotes: currentState.optimisticVotes + +name };
       });
+      await api.patchVotes(type, id, name);
     } catch (err) {
-      this.setState({ voteFailed: true });
+      // this.setState({ voteFailed: true });
+      this.setState(currentState => {
+        return {
+          optimisticVotes: currentState.optimisticVotes - +name,
+          voteFailed: true
+        };
+      });
     }
   };
 }

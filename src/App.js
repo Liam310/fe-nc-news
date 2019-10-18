@@ -16,8 +16,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Users changeUser={this.changeUser} user={this.state.user} />
+        <header className="TestHeader">
+          <Header />
+          <Users changeUser={this.changeUser} user={this.state.user} />
+        </header>
         <main className="main">
           <NavMenu />
           <Router primary={false}>
@@ -26,8 +28,8 @@ class App extends React.Component {
             <Article path="/articles/:article_id" user={this.state.user} />
             <ErrorHandler default />
           </Router>
-          <Footer />
         </main>
+        <Footer />
       </div>
     );
   }

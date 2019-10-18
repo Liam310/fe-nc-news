@@ -1,31 +1,33 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: 5fr 1fr;
-  grid-template-rows: 10vh 4fr 10vh 20px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 1fr 60px;
   grid-template-areas:
-    'header header'
-    'users users'
-    'main main'
-    'footer footer';
+    'test-header'
+    'main'
+    'footer';
   /* min-height: 700px; */
-  /* height: 100vh; */
+  min-height: 100vh;
+}
+
+.TestHeader {
+  grid-area: test-header;
+  position: fixed;
+  width: 100vw;
+  background-color: white;
+  padding-bottom: 20px;
+  border-bottom: solid 2px black;
+  box-sizing: border-box;
 }
 
 .Header {
-  grid-area: header;
-  /* border: solid 2px cyan; */
   margin-left: 0;
-  position: fixed;
-  height: 10vh;
-  width: 100vw;
-  /* position: sticky; */
-  z-index: 1;
   background-color: #202829;
   color: #ffffff;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   align-items: center;
   box-sizing: border-box;
 }
@@ -46,13 +48,10 @@
 
 .main {
   grid-area: main;
-  /* margin-top: 15vh; */
-  border: solid 2px #686869;
   text-align: left;
-  /* padding-left: 20px; */
-  overflow-y: scroll;
-  height: 75vh;
   box-sizing: border-box;
+  margin: 0;
+  /* padding-top: 30px; */
 }
 
 .ArticleHeader {
@@ -62,11 +61,11 @@
 .Footer {
   grid-area: footer;
   border-top: solid 2px rgb(204, 204, 21);
-  /* height: 60px; */
-  /* display: flex; */
+  display: flex;
   text-align: center;
-  justify-items: center;
+  justify-content: space-between;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .DeleteButton {
@@ -76,9 +75,8 @@
 .Users {
   grid-area: users;
   /* border: solid 2px #11ff25; */
-  border-left: solid 2px #686869;
-  border-right: solid 2px #686869;
-  height: 15vh;
+  /* height: 15vh; */
+  /* min-height: 58px; */
   box-sizing: border-box;
 }
 
@@ -88,6 +86,7 @@
   margin: 10px;
   transition: background-color 0.2s ease;
   padding: 15px;
+  max-width: 1000px;
   text-decoration: none;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
   box-sizing: border-box;
@@ -162,8 +161,8 @@ img.sad-cat {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 6vw;
-  top: 5.5vw;
+  left: 36px;
+  top: 34px;
 }
 
 /* Color/shape of burger icon bars */
@@ -226,26 +225,21 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background: rgba(0, 0, 0, 0.3);
 }
 
-@media only screen and (min-width: 600px) {
-  .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    left: 36px;
-    top: 35px;
+@media only screen and (max-width: 600px) {
+  .App {
+    grid-template-rows: 150px 1fr 60px;
+  }
+  .Header {
+    height: 65px;
   }
   .Users {
-    grid-area: users;
-    height: 10vh;
-    box-sizing: border-box;
+    height: 15px;
+    /*THIS NEEDS FIXING*/
   }
-  .main {
-    grid-area: main;
-    /* margin-top: 15vh; */
-    text-align: left;
-    /* padding-left: 20px; */
-    overflow-y: scroll;
-    height: 80vh;
-    box-sizing: border-box;
+  .bm-burger-button {
+    /* width: 36px; */
+    /* height: 30px; */
+    left: 20px;
+    top: 18px;
   }
 }

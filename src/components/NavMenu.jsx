@@ -3,6 +3,7 @@ import { slide as Menu } from 'react-burger-menu';
 import * as api from '../utils/api';
 import { Link } from '@reach/router';
 import { capitaliseFirstLetter } from '../utils/utils';
+import Users from './Users';
 
 class NavMenu extends Component {
   state = {
@@ -29,6 +30,7 @@ class NavMenu extends Component {
             </Link>
           );
         })}
+        <Users />
         {this.state.topicRequestFailed && (
           <div>
             <br />
