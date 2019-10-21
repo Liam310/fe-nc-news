@@ -2,7 +2,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 1fr 60px;
+  grid-template-rows: 142px 1fr 60px;
   grid-template-areas:
     'test-header'
     'main'
@@ -16,14 +16,13 @@
   position: fixed;
   width: 100vw;
   background-color: white;
-  padding-bottom: 20px;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px #086788;
   box-sizing: border-box;
 }
 
 .Header {
   margin-left: 0;
-  background-color: #202829;
+  background-color: #086788;
   color: #ffffff;
   display: flex;
   justify-content: center;
@@ -44,18 +43,14 @@
 .Article {
   padding-left: 10px;
   padding-right: 10px;
+  box-sizing: border-box;
 }
 
 .main {
   grid-area: main;
-  text-align: left;
   box-sizing: border-box;
   margin: 0;
   /* padding-top: 30px; */
-}
-
-.ArticleHeader {
-  padding-left: 10px;
 }
 
 .Footer {
@@ -72,25 +67,65 @@
   margin-bottom: 10px;
 }
 
+.Loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
 .Users {
   grid-area: users;
-  /* border: solid 2px #11ff25; */
-  /* height: 15vh; */
-  /* min-height: 58px; */
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+}
+
+.CurrentUser {
+  margin: 0;
+}
+
+.NavMenuUser {
+  display: none !important;
+}
+
+.NavMenuUser h3 {
+  margin-bottom: 10px;
+}
+
+.ArticleHeader {
+  margin-bottom: 25px;
+}
+
+.ArticleHeader h1 {
+  margin-bottom: 15px;
+}
+
+.ArticleList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ArticleListCard {
-  border: 1px solid black;
-  border-radius: 3px;
-  margin: 10px;
+  /* border-right: 1px solid rgb(201, 201, 201);
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-radius: 2px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24); */
+  border-top: 2px solid rgb(226, 226, 63);
+  /* margin: 10px; */
   transition: background-color 0.2s ease;
   padding: 15px;
+  width: 100%;
   max-width: 1000px;
   text-decoration: none;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
   box-sizing: border-box;
   background-color: #ffffff;
+  text-align: left;
 }
 
 .ArticleListCard:hover {
@@ -105,18 +140,23 @@
   text-decoration: none;
 }
 
+a {
+  color: #07a0c3;
+}
+
 .NavMenu a {
   color: white;
   text-decoration: none;
+  text-align: left;
 }
 
 .NavMenu a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
   color: #ebebeb;
 }
 
 .CommentCard {
-  border-top: 2px solid rgb(226, 226, 63);
+  border-top: 2px solid #f0c808;
   padding: 3px;
 }
 
@@ -212,7 +252,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
   color: #b8b7ad;
   padding: 0;
   max-height: 75vh;
-  /* box-sizing: border-box; */
 }
 
 /* Individual item */
@@ -225,21 +264,33 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background: rgba(0, 0, 0, 0.3);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .App {
-    grid-template-rows: 150px 1fr 60px;
+    grid-template-rows: 100px 1fr 60px;
   }
   .Header {
     height: 65px;
   }
   .Users {
-    height: 15px;
-    /*THIS NEEDS FIXING*/
+    height: 35px;
+    justify-content: center;
   }
   .bm-burger-button {
     /* width: 36px; */
     /* height: 30px; */
     left: 20px;
     top: 18px;
+  }
+
+  .CurrentUser {
+    display: none;
+  }
+
+  .NavMenuUser {
+    display: block !important;
+  }
+
+  .GithubLink {
+    display: none;
   }
 }

@@ -7,21 +7,23 @@ class Users extends Component {
     userRequestFailed: false
   };
   render() {
+    const { user } = this.props;
     return (
       <div className="Users">
-        <h3>
-          Currently signed in as <em>{this.props.user}</em>
+        <h3 className="CurrentUser">
+          Current user: <em>{user}</em>
         </h3>
         {this.state.userRequestFailed ? (
           <div>
             <p>
-              Whoops! We couldn't get hold of the list of users for some reason.
-              Try refreshing the page.
+              Whoops! We couldn't find the users. Please refresh. Try refreshing
+              the page.
             </p>
           </div>
         ) : (
-          <div>
-            <select onChange={this.handleChange}>
+          <div className="ChangeUserButton">
+            <strong>Select user: </strong>{' '}
+            <select onChange={this.handleChange} value={user}>
               {this.state.users.map(({ username }) => {
                 return (
                   <option value={username} key={username}>
@@ -40,8 +42,8 @@ class Users extends Component {
     this.getUsers();
   }
 
-  handleChange = event => {
-    this.props.changeUser(event.target.value);
+  handleChange = ({ target: { value } }) => {
+    this.props.changeUser(value);
   };
 
   getUsers = async () => {

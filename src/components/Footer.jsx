@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="Footer">
       <span>Author: Liam Duncan</span>
-      <span>
+      <span className="GithubLink">
         Click <a href="https://github.com/Liam310/fe-nc-news">here</a> for the
         Github repo of this site!
       </span>

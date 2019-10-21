@@ -29,13 +29,12 @@ class Article extends Component {
                 {capitaliseFirstLetter(topic)}
               </Link>
             </p>
-            <p>Votes: {votes}</p>
             <p>{body}</p>
             <Voter votes={votes} type="articles" id={article_id} />
             <CommentList article_id={article_id} user={this.props.user} />
           </div>
         ) : (
-          <div>Loading...</div>
+          <div className="Loading">Loading...</div>
         )}
       </div>
     );

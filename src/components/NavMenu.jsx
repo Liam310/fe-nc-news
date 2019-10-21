@@ -3,7 +3,6 @@ import { slide as Menu } from 'react-burger-menu';
 import * as api from '../utils/api';
 import { Link } from '@reach/router';
 import { capitaliseFirstLetter } from '../utils/utils';
-import Users from './Users';
 
 class NavMenu extends Component {
   state = {
@@ -12,26 +11,27 @@ class NavMenu extends Component {
     topicRequestFailed: false
   };
   render() {
-    const { topics, isOpen } = this.state;
+    const { topics, isOpen, topicRequestFailed } = this.state;
     return (
       <Menu className="NavMenu" isOpen={isOpen} onStateChange={this.isMenuOpen}>
         <h3>Select a topic</h3>
-        <Link to="/" onClick={this.handleClick}>
-          All articles
-        </Link>
-        {topics.map(({ slug }) => {
-          return (
-            <Link
-              to={`/articles/topic/${slug}`}
-              onClick={this.handleClick}
-              key={slug}
-            >
-              {capitaliseFirstLetter(slug)}
+        <ul>
+          <li>
+            <Link to="/" onClick={this.handleClick}>
+              All articles
             </Link>
-          );
-        })}
-        <Users />
-        {this.state.topicRequestFailed && (
+          </li>
+          {topics.map(({ slug }) => {
+            return (
+              <li key={slug}>
+                <Link to={`/articles/topic/${slug}`} onClick={this.handleClick}>
+                  {capitaliseFirstLetter(slug)}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        {topicRequestFailed && (
           <div>
             <br />
             <img
@@ -46,6 +46,10 @@ class NavMenu extends Component {
             </p>
           </div>
         )}
+        <div className="NavMenuUser">
+          <h3>Current user:</h3>
+          <em>{this.props.user}</em>
+        </div>
       </Menu>
     );
   }

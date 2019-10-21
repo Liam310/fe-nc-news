@@ -14,18 +14,19 @@ class App extends React.Component {
     user: localStorage.getItem('user') || 'guest'
   };
   render() {
+    const { user } = this.state;
     return (
       <div className="App">
         <header className="TestHeader">
           <Header />
-          <Users changeUser={this.changeUser} user={this.state.user} />
+          <Users changeUser={this.changeUser} user={user} />
         </header>
         <main className="main">
-          <NavMenu />
+          <NavMenu user={user} />
           <Router primary={false}>
             <ArticleList path="/" />
             <ArticleList path="/articles/topic/:slug" />
-            <Article path="/articles/:article_id" user={this.state.user} />
+            <Article path="/articles/:article_id" user={user} />
             <ErrorHandler default />
           </Router>
         </main>
