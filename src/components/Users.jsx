@@ -15,15 +15,16 @@ class Users extends Component {
         </h3>
         {this.state.userRequestFailed ? (
           <div>
-            <p>
-              Whoops! We couldn't find the users. Please refresh. Try refreshing
-              the page.
-            </p>
+            <p>Whoops! We couldn't find the users. Please go back.</p>
           </div>
         ) : (
-          <div className="ChangeUserButton">
-            <strong>Select user: </strong>{' '}
-            <select onChange={this.handleChange} value={user}>
+          <div className="ChangeUser">
+            <strong>Select user: </strong>
+            <select
+              onChange={this.handleChange}
+              value={user}
+              className="ChangeUserButton"
+            >
               {this.state.users.map(({ username }) => {
                 return (
                   <option value={username} key={username}>

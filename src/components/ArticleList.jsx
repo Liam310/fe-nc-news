@@ -49,7 +49,7 @@ class ArticleList extends Component {
       navigate('/err', {
         state: {
           msg:
-            'Whoops! Something went wrong with the connection on our end. Wait a few seconds and try refreshing the page.',
+            'Whoops! Something went wrong with the connection on our end. Try going back to the page you were on and refreshing.',
           imgURL: 'https://http.cat/500',
           replace: true
         }

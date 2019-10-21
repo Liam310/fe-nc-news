@@ -15,7 +15,7 @@ class NavMenu extends Component {
     return (
       <Menu className="NavMenu" isOpen={isOpen} onStateChange={this.isMenuOpen}>
         <h3>Select a topic</h3>
-        <ul>
+        <ul className="TopicList">
           <li>
             <Link to="/" onClick={this.handleClick}>
               All articles

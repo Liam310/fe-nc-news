@@ -13,6 +13,7 @@ class CommentAdder extends Component {
           type="text"
           onChange={this.handleChange}
           value={this.state.commentBody}
+          placeholder="Write your comment here..."
           required
         />{' '}
         <br />

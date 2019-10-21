@@ -21,8 +21,10 @@ class Article extends Component {
         {isLoaded ? (
           <div>
             <h2>{title}</h2>
-            <p>{formatDate(created_at)}</p>
-            <h4>Written by: {author}</h4>
+            <p></p>
+            <h4>
+              Written by <em>{author}</em> on {formatDate(created_at)}
+            </h4>
             <p>
               Topic:{' '}
               <Link to={`/articles/topic/${topic}`}>
