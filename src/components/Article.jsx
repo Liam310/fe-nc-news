@@ -16,14 +16,16 @@ class Article extends Component {
       article: { title, author, topic, body, votes, created_at, article_id },
       isLoaded
     } = this.state;
+    const { user } = this.props;
     return (
       <div className="Article">
         {isLoaded ? (
-          <div>
+          <div className="ArticleContent">
             <h2>{title}</h2>
             <p></p>
             <h4>
-              Written by <em>{author}</em> on {formatDate(created_at)}
+              Written by <em>{author === user ? 'you' : author}</em> on{' '}
+              {formatDate(created_at)}
             </h4>
             <p>
               Topic:{' '}

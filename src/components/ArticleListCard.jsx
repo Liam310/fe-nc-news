@@ -16,12 +16,15 @@ const ArticleListCard = ({
       <Link to={`/articles/${article_id}`}>
         <div>
           <h2>{title}</h2>
-          <p>{formatDate(created_at)}</p>
-          <h4>Written by: {author}</h4>
-          <p>Topic: {capitaliseFirstLetter(topic)}</p>
-          <p>
-            Votes: {votes}, Comments: {comment_count}
-          </p>
+          <div className="ArticleListCardInfo">
+            <p>
+              Posted on {formatDate(created_at)} by <em> {author}</em>
+            </p>
+            <p>Topic: {capitaliseFirstLetter(topic)}</p>
+            <p>
+              {votes} votes | {comment_count} comments
+            </p>
+          </div>
         </div>
       </Link>
     </div>

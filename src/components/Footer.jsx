@@ -5,8 +5,15 @@ const Footer = () => {
     <div className="Footer">
       <span>Author: Liam Duncan</span>
       <span className="GithubLink">
-        Click <a href="https://github.com/Liam310/fe-nc-news">here</a> for the
-        Github repo of this site!
+        Click{' '}
+        <a
+          target="_blank"
+          href="https://github.com/Liam310/fe-nc-news"
+          rel="noopener noreferrer"
+        >
+          here
+        </a>{' '}
+        for the Github repo of this site!
       </span>
       <span>Copyright, 2019</span>
     </div>

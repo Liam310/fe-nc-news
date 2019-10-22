@@ -7,7 +7,8 @@ import SortSelector from './SortSelector';
 class ArticleList extends Component {
   state = {
     articles: [],
-    sort_by: 'created_at'
+    sort_by: 'created_at',
+    isLoaded: false
   };
   render() {
     const { articles, sort_by } = this.state;

@@ -45,9 +45,28 @@
 }
 
 .Article {
-  padding-left: 10px;
+  /* padding-left: 10px;
   padding-right: 10px;
-  box-sizing: border-box;
+  box-sizing: border-box; */
+  /* max-width: 1000px; */
+  /* display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center; */
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 15px 0 15px;
+}
+
+.Article p {
+  text-align: left;
+}
+
+.ArticleContent {
+  max-width: 850px;
 }
 
 .main {
@@ -59,7 +78,7 @@
 
 .Footer {
   grid-area: footer;
-  border-top: solid 2px #f0c808;
+  border-top: solid 2px var(--yellow);
   background-color: var(--light-blue);
   color: var(--dark-blue);
   display: flex;
@@ -134,10 +153,10 @@
 }
 
 .ArticleListCard {
-  border-top: 3px solid #f0c808;
+  border-top: 3px solid var(--yellow);
   /* margin: 10px; */
   transition: background-color 0.2s ease;
-  padding: 15px;
+  padding: 25px 15px 10px 15px;
   width: 100%;
   max-width: 1000px;
   text-decoration: none;
@@ -160,19 +179,16 @@
 }
 
 .ArticleListCard h2 {
-  margin-top: 0;
+  margin: 0 0 15px 0;
+}
+
+.ArticleListCardInfo {
+  padding-left: 10px;
+  border-left: solid 2px var(--dark-blue);
 }
 
 a {
   color: inherit;
-}
-
-.Article p {
-  text-align: left;
-}
-
-a:hover {
-  color: darken;
 }
 
 .NavMenu a {
@@ -189,7 +205,7 @@ a:hover {
 .CommentCard {
   background-color: white;
   color: var(--dark-blue);
-  border-top: 2px solid #f0c908;
+  border-top: 2px solid var(--yellow);
   padding: 0 8px 0 8px;
 }
 
@@ -244,7 +260,7 @@ img.sad-cat {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #f0c808;
+  background: var(--yellow);
 }
 
 /* Color/shape of burger icon bars on hover*/
